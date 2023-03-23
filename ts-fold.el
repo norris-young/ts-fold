@@ -318,7 +318,8 @@ If the current node is not folded or not foldable, do nothing."
   "Fold all foldable syntax nodes in the buffer."
   (interactive)
   (ts-fold--ensure-ts
-    (let* ((node (treesit-buffer-root-node))
+    (let* ((ts-fold-indicators-mode)
+           (node (treesit-buffer-root-node))
            (patterns (mapconcat (lambda (fold-range) (concat "(" (symbol-name (car fold-range)) ") " "@name"))
                                  (alist-get major-mode ts-fold-range-alist) " "))
            (query (treesit-query-compile (treesit-node-language node) patterns))
